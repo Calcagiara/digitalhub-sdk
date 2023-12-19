@@ -11,8 +11,6 @@ on:
 env:
   REGISTRY: ghcr.io
   REPO_NAME: ${{ github.repository }}
-  NEFERTEM_IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/nefertem
-  DBT_IMAGE_NAME: ${{ env.REGISTRY }}/${{ env.REPO_NAME }}/dbt
 
 # There is a single job in this workflow. It's configured to run on the latest available version of Ubuntu.
 jobs:
@@ -34,6 +32,10 @@ jobs:
       packages: write
       # 
     steps:
+      - name: Set env
+        run: |
+          echo ::set-env name=NEFERTEM_IMAGE_NAME::${{ env.REGISTRY }}/${{ env.REPO_NAME }}/nefertem
+          echo ::set-env name=DBT_IMAGE_NAME::${{ env.REGISTRY }}/${{ env.REPO_NAME }}/dbt
       - name: Checkout repository
         uses: actions/checkout@v4
       # Uses the `docker/login-action` action to log in to the Container registry registry using the account and password that will publish the packages. Once published, the packages are scoped to the account defined here.
