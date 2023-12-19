@@ -53,16 +53,16 @@ jobs:
       - name: Build and push Docker DBT image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: digitalhub-sdk/wrapper/dbt
+          context: "{{defaultContext}}:wrapper/dbt"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: digitalhub-sdk/wrapper/dbt/Dockerfile
+          file: "{{defaultContext}}:wrapper/dbt/Dockerfile"
       - name: Build and push Docker Nefertem image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: digitalhub-sdk/nefertem/dbt
+          context: "{{defaultContext}}:wrapper/nefertem/"
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: digitalhub-sdk/wrapper/nefertem/Dockerfile
+          file: "{{defaultContext}}:wrapper/nefertem/Dockerfile"
