@@ -57,7 +57,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: "{context}/dbt/Dockerfile"
+          file: "{{context}}/dbt/Dockerfile"
       - name: Build and push Docker Nefertem image
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
@@ -65,4 +65,4 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          file: "{context}/nefertem/Dockerfile"
+          file: "{{context}}/nefertem/Dockerfile"
